@@ -1,2 +1,3 @@
 # TBO-FinalProject
-Folder tempat menaruh final project TBO.
+Berkas tempat pengunggahan Tugas Akhir Mata Kuliah Teori Bahasa dan Otomata.
+[Foldername : TBO-FinalProject Kelompok1]
