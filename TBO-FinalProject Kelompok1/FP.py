@@ -1,6 +1,6 @@
 import sys
 sys.path.append("C:\Python311\Lib\site-packages\streamlit")
-import streamlit as st
+import streamlit as strlit
 
 # Set of Rules
 rules_kalimat = [["K", "SPO"],
@@ -70,7 +70,6 @@ def konversi(string1 : str, daftar1 : list) -> str:
   string2 = ""
   for i in range(len(daftar1[:])):
     for j in daftar1[i][1:]:
-      # jika elemen pada daftar1 ada pada string, dengan kata lain
       # jika notasi terdapat dalam aturan, maka bisa diganti menjadi contoh : SPO
       if j in string1:
         string2 = string2 + daftar1[i][0]
@@ -80,14 +79,13 @@ def konversi(string1 : str, daftar1 : list) -> str:
 def inisiasiTableFill(daftar1 : list, daftar2 : list, arrayTableFill : list):
   for i in range(0, len(daftar1)):
     for j in range(len(daftar2)):
-      # ada perubahan string ke notasi kalimat (contoh : noun)
       # jika elemen pada daftar2 ada pada daftar1, maka dapat diubah
       for k in daftar2[j][1:]:
         if k in daftar1[i]:
           arrayTableFill[i][0] = daftar2[j][0]
   return arrayTableFill
 
-# fungsi untuk menambah string dalam segitiga tabel feeling
+# fungsi untuk menambah string dalam table filling
 def kalkulasi(y : int, x : int, daftar1 : list):
   # pada fungsi ini, koordinat x dan y dikurangi 1 agar sesuai indeks
   x -= 1
@@ -144,19 +142,6 @@ def cek_baku(daftar1 : list) -> int:
   elif "K" not in daftar1[0][-1]:
     return 0
 
-def process_x(daftar2 : list):
-  count = 0
-  for daftar1 in daftar2:
-    tabel = arrayTableFill(len(daftar1))
-    inisiasiTableFill(data, daftar1, tabel)
-    process1(tabel, len(tabel[:]))
-    daftar1.append(cek_baku(tabel))
-    for i in range(len(daftar1)):
-      for x, j in enumerate(daftar1):
-        if j == 1:
-          count += 1
-  print(count)
-
 # fungsi untuk memproses kalimat dari awal
 def cek_kalimat(strinx):
   # string dipecah dahulu
@@ -172,7 +157,7 @@ def cek_kalimat(strinx):
   # meminta nilai return dari fungsi cek_baku (nilai 1 atau 0)
   return cek_baku(test)
 
-st.write("""
+strlit.write("""
 # Application of CFG in Syntactic Parsing
 Simple Application for Checking *Standard Sentence Pattern* for Fulfill The Final Project of the "Teori Bahasa dan Automata" Subject at Teknik Informatika Udayana University's Lectures.
 _____________________________________
@@ -183,11 +168,11 @@ Ketut Agus Cahyadi Nanda (2108561079)
 I Gede Ngurah Arya Wira Putra (2108561119)
 """)
 
-input = st.text_input("Input the String that you want to check:")
-cek = st.button("Check It!")
+input = strlit.text_input("Input the String that you want to check:")
+cek = strlit.button("Check It!")
 
 if cek:
     if cek_kalimat(input) == 1:
-        st.success("It's Standard Sentence! Congratulations...")
+        strlit.success("It's Standard Sentence! Congratulations...")
     else:
-        st.error("Unfortunately, Your String is non-Standard. Try Again!")
+        strlit.error("Unfortunately, Your String is non-Standard. Try Again!")
